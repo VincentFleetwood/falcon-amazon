@@ -1,6 +1,6 @@
 USE FalconAmazonDB;
 
-CREATE TABLE Customers
+CREATE TABLE tblCustomers
 (
     CustomerID int IDENTITY(10000, 1) NOT NULL,
     FirstName nvarchar(50) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE Customers
     CONSTRAINT PK_Customer PRIMARY KEY (CustomerID)
 );
 
-CREATE TABLE Products
+CREATE TABLE tblProducts
 (
     ProductID int IDENTITY(10000, 1) NOT NULL,
     ProductName nvarchar(50) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE Products
     CONSTRAINT PK_Product PRIMARY KEY (ProductID)
 );
 
-CREATE TABLE Orders
+CREATE TABLE tblOrders
 (
     OrderID int IDENTITY(10000, 1) NOT NULL,
     CustomerID int NOT NULL,
@@ -32,10 +32,10 @@ CREATE TABLE Orders
 
     CONSTRAINT PK_Order PRIMARY KEY (OrderID),
     CONSTRAINT FK_OrderCustomer FOREIGN KEY(CustomerID)
-    REFERENCES dbo.Customers(CustomerID)
+    REFERENCES dbo.tblCustomers(CustomerID)
 );
 
-CREATE TABLE OrderItems
+CREATE TABLE tblOrderItems
 (
     OrderItemID int IDENTITY(10000, 1) NOT NULL,
     OrderID int NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE OrderItems
 
     CONSTRAINT PK_OrderItem PRIMARY KEY (OrderItemID),
     CONSTRAINT FK_OrderItemOrder FOREIGN KEY(OrderID)
-    REFERENCES dbo.Orders(OrderID),
+    REFERENCES dbo.tblOrders(OrderID),
     CONSTRAINT FK_OrderItemProduct FOREIGN KEY(ProductID)
-    REFERENCES dbo.Products(ProductID)
+    REFERENCES dbo.tblProducts(ProductID)
 );

@@ -1,5 +1,0 @@
-C:\Users\Eddie>sqlcmd -S A-Mac\SQLSERVER2019
-1> CREATE DATABASE FalconAmazonDB
-2> go
-1> sp_databases
-2> go
