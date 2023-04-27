@@ -32,7 +32,7 @@ CREATE TABLE tblOrders
 
     CONSTRAINT PK_Order PRIMARY KEY (OrderID),
     CONSTRAINT FK_OrderCustomer FOREIGN KEY(CustomerID)
-    REFERENCES dbo.tblCustomers(CustomerID)
+    REFERENCES dbo.tblCustomers(CustomerID) ON DELETE SET NULL
 );
 
 CREATE TABLE tblOrderItems
