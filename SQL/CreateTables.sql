@@ -26,7 +26,7 @@ CREATE TABLE tblProducts
 CREATE TABLE tblOrders
 (
     OrderID int IDENTITY(10000, 1) NOT NULL,
-    CustomerID int NOT NULL,
+    CustomerID int NULL,
     OrderDate date NOT NULL,
     OrderTotal decimal(10,2) NOT NULL,
 
