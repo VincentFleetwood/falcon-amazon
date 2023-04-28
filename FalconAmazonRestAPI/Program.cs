@@ -8,8 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 // Creates the application builder
 var builder = WebApplication.CreateBuilder(args);
 
+// Add configuration sources
+builder.Configuration.AddJsonFile("appsettings.json", optional: true);
+
 // Adds the database to the dependency injection container
-builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>();
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(options => options.UseSqlServer(connectionString));
 
 // Add the customer service to the dependency injection container
 builder.Services.AddScoped<CustomerService>();
@@ -22,7 +26,7 @@ RouteGroupBuilder customers = app.MapGroup("/customers");
 
 // Creates the endpoint definitions
 customers.MapPost("/", AddNewCustomer);
-customers.MapGet("/", GetCustomerFromID);
+customers.MapGet("/{customerID}", GetCustomerFromID);
 
 // Starts the API
 app.Run();
@@ -30,10 +34,12 @@ app.Run();
 
 static async Task<IResult> AddNewCustomer([FromBody] Customer customer, [FromServices] CustomerService customerService) 
 {
-    return Results.Ok();
+    var returnedCustomer = await customerService.AddNewCustomerAsync(customer);
+    return Results.Ok(returnedCustomer);
 }
 
 static async Task<IResult> GetCustomerFromID(int customerID, [FromServices] CustomerService customerService)
 {
-    return Results.Ok();
+    var returnedCustomer = await customerService.GetCustomerFromIDAsync(customerID);
+    return Results.Ok(returnedCustomer);
 }

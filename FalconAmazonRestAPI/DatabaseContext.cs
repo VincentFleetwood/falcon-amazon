@@ -11,12 +11,6 @@ public class DatabaseContext : DbContext, IDatabaseContext
 
     }
 
-    // The OnConfiguring method is overridden to configure the database connection and other options.
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=A-MAC\\SQLSERVER2019;Database=ShareSpaceDB;User Id=guestLogin;Password=guestpassword;Encrypt=False;");
-    }
-
     // This method saves changes made to the database.
     public async Task SaveChangesToDatabaseAsync()
     {
