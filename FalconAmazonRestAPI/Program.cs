@@ -27,6 +27,8 @@ RouteGroupBuilder customers = app.MapGroup("/customers");
 // Creates the endpoint definitions
 customers.MapPost("/", AddNewCustomer);
 customers.MapGet("/{customerID}", GetCustomerFromID);
+customers.MapPut("/{customerID}", UpdateCustomerFromID);
+customers.MapDelete("/{customerID}", DeleteCustomerFromID);
 
 // Starts the API
 app.Run();
@@ -43,3 +45,17 @@ static async Task<IResult> GetCustomerFromID(int customerID, [FromServices] Cust
     var returnedCustomer = await customerService.GetCustomerFromIDAsync(customerID);
     return Results.Ok(returnedCustomer);
 }
+
+static async Task<IResult> UpdateCustomerFromID(int customerID, [FromBody] Customer customer, [FromServices] CustomerService customerService)
+{
+    var returnedCustomer = await customerService.UpdateCustomerFromIDAsync(customerID, customer);
+    return Results.Ok(returnedCustomer);
+}
+
+
+static async Task<IResult> DeleteCustomerFromID(int customerID, [FromServices] CustomerService customerService)
+{
+    var returnedCustomer = await customerService.DeleteCustomerFromIDAsync(customerID);
+    return Results.Ok(returnedCustomer);
+}
+
