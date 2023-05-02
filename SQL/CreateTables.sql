@@ -8,8 +8,12 @@ CREATE TABLE tblCustomers
     EmailAddress nvarchar(100) UNIQUE NOT NULL,
     PhoneNumber nvarchar(20) UNIQUE NOT NULL,
     DOB date NOT NULL,
+    AddressID int NOT NULL,
 
-    CONSTRAINT PK_Customer PRIMARY KEY (CustomerID)
+    CONSTRAINT PK_Customer PRIMARY KEY (CustomerID),
+
+    CONSTRAINT FK_CustomerAddress FOREIGN KEY (AddressID) REFERENCES dbo.tblAddresses(AddressID)
+
 );
 
 CREATE TABLE tblProductCategory
@@ -31,7 +35,7 @@ CREATE TABLE tblProducts
 
     CONSTRAINT PK_Product PRIMARY KEY (ProductID),
 
-	CONSTRAINT FK_CategoryID FOREIGN KEY (CategoryID) REFERENCES dbo.tblProductCategory(CategoryID)
+	CONSTRAINT FK_ProductCategory FOREIGN KEY (CategoryID) REFERENCES dbo.tblProductCategory(CategoryID)
 );
 
 CREATE TABLE tblInventory
@@ -43,7 +47,7 @@ CREATE TABLE tblInventory
 
     CONSTRAINT PK_Inventory PRIMARY KEY (InventoryID),
 
-    CONSTRAINT FK_ProductID FOREIGN KEY (ProductID)
+    CONSTRAINT FK_InventoryProduct FOREIGN KEY (ProductID)
     REFERENCES dbo.tblProducts(ProductID)
 );
 
@@ -77,7 +81,6 @@ CREATE TABLE tblOrderItems
 CREATE TABLE tblAddresses
 (
 	AddressID int IDENTITY(10000, 1) NOT NULL,
-	CustomerID int NULL,
 	AddressLine1 nvarchar(100) NOT NULL,
 	AddressLine2 nvarchar(100) NULL,
 	City nvarchar(50) NOT NULL,
@@ -85,8 +88,4 @@ CREATE TABLE tblAddresses
 	Country nvarchar(50) NOT NULL,
 
 	CONSTRAINT PK_Address PRIMARY KEY (AddressID),
-
-	CONSTRAINT FK_Customer FOREIGN KEY (CustomerID)
-	REFERENCES dbo.tblCustomers(CustomerID)
 );
-
