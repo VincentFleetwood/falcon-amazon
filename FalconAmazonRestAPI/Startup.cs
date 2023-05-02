@@ -18,7 +18,7 @@ namespace FalconAmazonRestAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // Retrieve the connection string from appsettings.json
-            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+            string connectionString = _configuration.GetConnectionString("AmyConnection");
 
             // Add the DbContext to the dependency injection container
             services.AddDbContext<IDatabaseContext, DatabaseContext>(options => options.UseSqlServer(connectionString));
