@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: true);
 
 // Adds the database to the dependency injection container
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string connectionString = builder.Configuration.GetConnectionString("AmyConnection");
 builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(options => options.UseSqlServer(connectionString));
 
 // Add the customer service to the dependency injection container
