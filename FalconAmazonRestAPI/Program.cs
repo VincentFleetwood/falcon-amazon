@@ -36,8 +36,7 @@ app.Run();
 
 static async Task<IResult> AddNewCustomer([FromBody] Customer customer, [FromServices] CustomerService customerService) 
 {
-    var returnedCustomer = await customerService.AddNewCustomerAsync(customer);
-    return Results.Ok(returnedCustomer);
+    return await customerService.AddNewCustomerAsync(customer);
 }
 
 static async Task<IResult> GetCustomerFromID(int customerID, [FromServices] CustomerService customerService)
@@ -51,7 +50,6 @@ static async Task<IResult> UpdateCustomerFromID(int customerID, [FromBody] Custo
     var returnedCustomer = await customerService.UpdateCustomerFromIDAsync(customerID, customer);
     return Results.Ok(returnedCustomer);
 }
-
 
 static async Task<IResult> DeleteCustomerFromID(int customerID, [FromServices] CustomerService customerService)
 {

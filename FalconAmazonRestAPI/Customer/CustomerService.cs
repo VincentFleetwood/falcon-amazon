@@ -16,7 +16,7 @@ public class CustomerService
     }
 
     // Adds a new customer to the database
-    public async Task<Customer> AddNewCustomerAsync(Customer customer)
+    public async Task<IResult> AddNewCustomerAsync(Customer customer)
     {
         // Validates customer data
         _customerValidator.Validate(customer);
@@ -27,7 +27,7 @@ public class CustomerService
         // Saves changes to the database
         await _dbContext.SaveChangesToDatabaseAsync();
 
-        return customer;
+        return Results.Ok(customer);
     }
 
     // Retrieves a customer from the database by ID
