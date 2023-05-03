@@ -13,7 +13,6 @@ CREATE TABLE tblCustomers
     CONSTRAINT PK_Customer PRIMARY KEY (CustomerID),
 
     CONSTRAINT FK_CustomerAddress FOREIGN KEY (AddressID) REFERENCES dbo.tblAddresses(AddressID)
-
 );
 
 CREATE TABLE tblProductCategory
@@ -34,7 +33,6 @@ CREATE TABLE tblProducts
     CategoryID int NOT NULL,
 
     CONSTRAINT PK_Product PRIMARY KEY (ProductID),
-
 	CONSTRAINT FK_ProductCategory FOREIGN KEY (CategoryID) REFERENCES dbo.tblProductCategory(CategoryID)
 );
 
@@ -46,7 +44,6 @@ CREATE TABLE tblInventory
     ProductStatus nvarchar(20) NOT NULL,
 
     CONSTRAINT PK_Inventory PRIMARY KEY (InventoryID),
-
     CONSTRAINT FK_InventoryProduct FOREIGN KEY (ProductID)
     REFERENCES dbo.tblProducts(ProductID)
 );
