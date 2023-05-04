@@ -17,18 +17,24 @@ builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(options => opti
 
 // Add the customer service to the dependency injection container
 builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<ProductService>();
+
 
 // Builds the app
 var app = builder.Build();
 
 // Replaces repated routes for ease of use
 RouteGroupBuilder customers = app.MapGroup("/customers");
+RouteGroupBuilder products = app.MapGroup("/products");
+
 
 // Creates the endpoint definitions
 customers.MapPost("/", AddNewCustomer);
 customers.MapGet("/{customerID}", GetCustomerFromID);
 customers.MapPut("/{customerID}", UpdateCustomerFromID);
 customers.MapDelete("/{customerID}", DeleteCustomerFromID);
+
+products.MapGet("/", GetAllProducts);
 
 // Starts the API
 app.Run();
@@ -57,3 +63,8 @@ static async Task<IResult> DeleteCustomerFromID(int customerID, [FromServices] C
     return Results.Ok(returnedCustomer);
 }
 
+static async Task<IResult> GetAllProducts([FromServices] ProductService productService)
+{
+    var returnedProducts = await productService.GetAllProductsAsync();
+    return Results.Ok(returnedProducts);
+}

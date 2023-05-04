@@ -4,5 +4,6 @@
 public interface IDatabaseContext
 {
     DbSet<Customer> tblCustomers { get; set; } // A DbSet property for the Customer entity
+    DbSet<Product> tblProducts { get; set; }
     Task SaveChangesToDatabaseAsync(); // A method for saving changes made to the database
 }

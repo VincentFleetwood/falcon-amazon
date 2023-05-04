@@ -4,6 +4,7 @@
 public class DatabaseContext : DbContext, IDatabaseContext
 {
     public DbSet<Customer> tblCustomers { get; set; }// A DbSet property for the Customer 
+    public DbSet<Product> tblProducts { get; set; }
 
     // The constructor of the DatabaseContext class takes an instance of DbContextOptions, which is used to configure the database context.
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
