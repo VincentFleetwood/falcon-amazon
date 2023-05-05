@@ -68,3 +68,26 @@ static async Task<IResult> GetAllProducts([FromServices] ProductService productS
     var returnedProducts = await productService.GetAllProductsAsync();
     return Results.Ok(returnedProducts);
 }
+
+static async Task<IResult> GetProductFromID(int productID, [FromServices] ProductService productService)
+{
+    var returnedProduct = await productService.GetProductFromIDAsync(productID);
+    return Results.Ok(returnedProduct);
+}
+
+static async Task<IResult> AddNewProduct([FromBody] Product product, [FromServices] ProductService productService)
+{
+    return await productService.AddNewProductAsync(product);
+}
+
+static async Task<IResult> UpdateProductFromID(int productID, [FromBody] Product product, [FromServices] ProductService productService)
+{
+    var returnedProduct = await productService.UpdateProductFromIDAsync(productID, product);
+    return Results.Ok(returnedProduct);
+}
+
+static async Task<IResult> DeleteProductFromID(int productID, [FromServices] ProductService productService)
+{
+    var returnedProduct = await productService.DeleteProductFromIDAsync(productID);
+    return Results.Ok(returnedProduct);
+}
