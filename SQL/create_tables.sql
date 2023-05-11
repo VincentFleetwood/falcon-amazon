@@ -33,3 +33,13 @@ CREATE TABLE tbl_addresses
 	FOREIGN KEY (user_id) REFERENCES dbo.tbl_users(id)
 );
 
+CREATE TABLE tbl_user_tokens
+(
+	id INT NOT NULL IDENTITY PRIMARY KEY,
+	user_id INT NOT NULL,
+	token UNIQUEIDENTIFIER NOT NULL,
+	expiry_date DATETIME NOT NULL
+
+	FOREIGN KEY (user_id) REFERENCES dbo.tbl_users(id)
+);
+
