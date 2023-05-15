@@ -30,7 +30,8 @@ CREATE TABLE tbl_addresses
 	country VARCHAR(50) NOT NULL,
 	is_business BIT NOT NULL,
 
-	FOREIGN KEY (user_id) REFERENCES dbo.tbl_users(id)
+    CONSTRAINT FK_address_user FOREIGN KEY(user_id)
+    REFERENCES dbo.tbl_users(id)
 );
 
 CREATE TABLE tbl_user_tokens
@@ -40,6 +41,7 @@ CREATE TABLE tbl_user_tokens
 	token UNIQUEIDENTIFIER NOT NULL,
 	expiry_date DATETIME NOT NULL
 
-	FOREIGN KEY (user_id) REFERENCES dbo.tbl_users(id)
+	CONSTRAINT FK_user_tokens_user FOREIGN KEY(user_id)
+    REFERENCES dbo.tbl_users(id)
 );
 
