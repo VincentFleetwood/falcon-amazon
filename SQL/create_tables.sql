@@ -6,7 +6,7 @@ CREATE TABLE tbl_users
     username VARCHAR(100) NOT NULL,
     password_hash VARCHAR(120) NOT NULL,
 	forenames VARCHAR(50) NOT NULL,
-	surnames VARCHAR(100) NOT NULL,
+	surname VARCHAR(100) NOT NULL,
 	email_address VARCHAR(200) UNIQUE NOT NULL,
 	telephone VARCHAR(15) UNIQUE NOT NULL,
 	date_of_birth DATETIME NOT NULL,

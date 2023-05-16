@@ -1,4 +1,4 @@
-id,username,password_hash,forenames,surnames,email_address,telephone,date_of_birth,date_added,date_last_modified,failed_login_attempts,is_deleted
+id,username,password_hash,forenames,surname,email_address,telephone,date_of_birth,date_added,date_last_modified,failed_login_attempts,is_deleted
 1,johndoe@example.com,h7B3q9fX8eR2dP5s,John,Doe,johndoe@example.com,+447712345678,1980-01-01 00:00:00,2023-05-16 12:00:00,2023-05-16 12:00:00,1,0
 2,janesmith@example.com,o4G8d2K1fR9sP3e5,Jane,Smith,janesmith@example.com,+447723456789,1985-05-10 00:00:00,2023-05-16 12:00:00,2023-05-16 12:00:00,1,0
 3,sarahwilson@example.com,t9H5q3C7sK1jW8z6,Sarah,Wilson,sarahwilson@example.com,+447734567890,1992-08-15 00:00:00,2023-05-16 12:00:00,2023-05-16 12:00:00,1,0
